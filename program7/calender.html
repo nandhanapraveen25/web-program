@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendar Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #888;
+      padding: 8px;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+    h2 {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🗓 Simple Calendar Generator</h2>
+
+  <label>Enter Year:</label>
+  <input type="number" id="year" placeholder="e.g. 2025"><br><br>
+
+  <label>Enter Month (1-12):</label>
+  <input type="number" id="month" placeholder="e.g. 10"><br><br>
+
+  <button onclick="generateCalendar()">Generate Calendar</button>
+
+  <div id="calendar"></div>
+
+  <script>
+    function generateCalendar() {
+      let year = parseInt(document.getElementById("year").value);
+      let month = parseInt(document.getElementById("month").value) - 1; // Months start from 0
+
+      if (isNaN(year) || isNaN(month) || month < 0 || month > 11) {
+        alert("Please enter a valid year and month (1–12).");
+        return;
+      }
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      const firstDay = new Date(year, month, 1).getDay();
+
+
