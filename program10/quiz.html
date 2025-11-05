@@ -1,0 +1,42 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<script>
+function mark(){
+let score=0;
+if(document.getElementById("a").checked)
+{
+score++;
+}
+if(document.getElementById("b").checked)
+{
+score++;
+}
+if(document.getElementById("c").checked)
+{
+score++;
+}
+document.getElementById("s").innerHTML="SCORE:"+score;}
+</script>
+<h3>ONLINE QUIZ</h3>
+<h2>what is the full form HTML</h2>
+<input type="radio" name="h"id="a">HYPER TEXT MARKEUP LANGUAGE</input><br>
+<input type="radio" name="h">HYPER TEXT MAKEUP LANGUAGE</input><br>
+<input type="radio" name="h">HYPER TEXT MARKEUP LEARNER</input><br>
+<input type="radio" name="h">HIGH TEXT MARKEUP LANGUAGE</input><br>
+<h2>what is the full form CSS</h2>
+<input type="radio" name="w">CASCADING STYLE SLIP</input><br>
+<input type="radio" name="w"id="b">CASCADING STYLE SHEET</input><br>
+<input type="radio" name="w">CASCADING SINGLE SHEET</input><br>
+<input type="radio" name="w">CASTING STYLE SHEET</input><br>
+<h2>who is the CEO of google</h2>
+<input type="radio" name="g">ELON MUSK</input><br>
+<input type="radio" name="g">ZUCKER BERG</input><br>
+<input type="radio" name="g">BILL GATES</input><br>
+<input type="radio" name="g"id="c">SUNDER PICHAI</input>
+<h3 id="s">SCORE:</h3>
+<input type="SUBMIT" onclick="mark()">
+</body>
+</html>
