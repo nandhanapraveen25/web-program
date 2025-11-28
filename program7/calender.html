@@ -1,61 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calendar Generator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    table {
-      border-collapse: collapse;
-      margin: 20px auto;
-    }
-    th, td {
-      border: 1px solid #888;
-      padding: 8px;
-      width: 40px;
-      height: 40px;
-      text-align: center;
-    }
-    th {
-      background-color: #333;
-      color: white;
-    }
-    h2 {
-      margin-top: 20px;
-    }
-  </style>
+<title>Calendar Generator</title>
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #f9f9f9;
+}
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+th, td {
+    border: 1px solid #999;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+th {
+    background: #ddd;
+}
+.sunday {
+    color: red;
+}
+</style>
 </head>
 <body>
 
-  <h2>🗓 Simple Calendar Generator</h2>
+<h2>Calendar Generator</h2>
+year: <input type="number" id="year" placeholder="2025">
+month: <input type="number" id="month" placeholder="1-12">
+<button onclick="generateCalendar()">Generate</button>
+<div id="calendar"></div>
 
-  <label>Enter Year:</label>
-  <input type="number" id="year" placeholder="e.g. 2025"><br><br>
+<script>
+function generateCalendar() {
+    let y = parseInt(document.getElementById("year").value);
+    let m = parseInt(document.getElementById("month").value) - 1;
 
-  <label>Enter Month (1-12):</label>
-  <input type="number" id="month" placeholder="e.g. 10"><br><br>
-
-  <button onclick="generateCalendar()">Generate Calendar</button>
-
-  <div id="calendar"></div>
-
-  <script>
-    function generateCalendar() {
-      let year = parseInt(document.getElementById("year").value);
-      let month = parseInt(document.getElementById("month").value) - 1; // Months start from 0
-
-      if (isNaN(year) || isNaN(month) || month < 0 || month > 11) {
-        alert("Please enter a valid year and month (1–12).");
+    if (isNaN(y) || isNaN(m) || m < 0 || m > 11) {
+        alert("Enter valid year and month!");
         return;
-      }
+    }
 
-      const monthNames = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ];
+    let firstDay = new Date(y, m, 1).getDay();
+    let days = new Date(y, m + 1, 0).getDate();
 
-      const firstDay = new Date(year, month, 1).getDay();
+    let table = "<table><tr>";
+    ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach(d => {
+        table += `<th>${d}</th>`;
+    });
+    table += "</tr><tr>";
 
+ 
+    for (let i = 0; i < firstDay; i++) {
+        table += "<td></td>";
+    }
+
+ 
+    for (let d = 1; d <= days; d++) {
+        let dayClass = (firstDay + d - 1) % 7 === 0 ? "sunday" : "";
+        table += `<td class="${dayClass}">${d}</td>`;
+
+        
+        if ((firstDay + d) % 7 === 0 && d !== days) {
+            table += "</tr><tr>";
+        }
+    }
+
+    table += "</tr></table>";
+    document.getElementById("calendar").innerHTML = table;
+}
+</script>
+
+</body>
+</html>
 
